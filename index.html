@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tiffany Session QR</title>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+</head>
+<body>
+  <h2>Scan to Login to Tiffany AI</h2>
+  <div id="qrcode"></div>
+  <script>
+    fetch('/api/session')
+      .then(res => res.json())
+      .then(data => {
+        if (data.qr) {
+          QRCode.toCanvas(document.getElementById('qrcode'), data.qr);
+        }
+      });
+  </script>
+</body>
+</html>
